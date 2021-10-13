@@ -1,0 +1,146 @@
+{% extends 'kino_app/base.html' %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Custom styles for this template -->
+    <link href="../../../kino_app/static/kino_app/css/form-validation.css" rel="stylesheet">
+  </head>
+  <body class="bg-light">
+{% block content %}
+<div class="container" style="margin-top: 100px;margin-bottom: 100px">
+  <main>
+    <div class="py-5 text-center">
+      <h2>Страница клиента</h2>
+    </div>
+
+    <div class="row g-5">
+
+      <div class="col-md-7 col-lg-8">
+        <form class="needs-validation" novalidate method="get">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">Имя</label>
+              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid first name is required.
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Фамилия</label>
+              <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label for="MobilePhone" class="form-label">Телефон</label>
+              <input type="text" class="form-control" id="MobilePhone" placeholder="097-777-77-77" value="" required>
+              <div class="invalid-feedback">
+                Valid last name is required.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="username" class="form-label">Псевдоним</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" id="username"  required>
+              </div>
+              <div class="invalid-feedback">
+                  Your username is required.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="email" class="form-label">Почта <span class="text-muted"></span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Город</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Укажите ваш город</option>
+                  <option value="Одесса">Одесса</option>
+                  <option value="Харьков">Харьков</option>
+                  <option value="Киев">Киев</option>
+                </select>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="address" class="form-label">Адрес</label>
+              <input type="text" class="form-control" id="address" placeholder="ул.Волшебная 55" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="birthday" class="form-label">Дата рождения</label>
+              <input type="date" class="form-control" id="birthday" required>
+              <div class="invalid-feedback">
+                Please enter your shipping birthday.
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="password" class="form-label">Пароль</label>
+              <input type="password" class="form-control" id="address" required>
+              <div class="invalid-feedback">
+                Please enter your shipping password.
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="password" class="form-label">Повторите пароль</label>
+              <input type="password" class="form-control" id="address" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">Пол</h4>
+          <div class="my-3">
+            <div class="form-check">
+              <input checked id="Man" name="sex_check" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="debit">Мужской</label>
+            </div>
+            <div class="form-check">
+              <input id="Woman" name="sex_check" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="paypal">Женский</label>
+            </div>
+          </div>
+          <h4 class="mb-3">Язык</h4>
+          <div class="my-3">
+            <div class="form-check">
+              <input checked id="ru" name="language" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="ru">Русский</label>
+            </div>
+            <div class="form-check">
+              <input id="en" name="language" type="radio" class="form-check-input" required>
+              <label class="form-check-label" for="en">English</label>
+            </div>
+          </div>
+
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-success btn-lg" type="submit">Continue to checkout</button>
+
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+
+
+    <script src="../../../kino_app/static/kino_app/js/form-validation.js"></script>
+  {% endblock %}
+  </body>
+</html>
