@@ -1,5 +1,5 @@
 {% extends 'kino_app/base.html' %}
-
+{% block title %} Контакты {% endblock %}
 {% block content %}
 <div class="card mb-3 text-black" style="margin-top: 130px;">
   <div class="container-marketing-colo">
@@ -10,29 +10,31 @@
                 <h4 class="text-center">Контакты</h4>
                 <br>
                 <div class="container-marketing-colo">
+                    {% for contact in contacts %}
+
                     <div class="row">
-                        <div class="col-lg-2">
-                            <h3>Кинотеатр</h3>
+
+
+
+                        <div class="col-lg-3">
+                            <h3>{{ contact.name }}</h3>
                         </div>
-                        <div class="col-lg-2">
-                            <img style="width: 100px;height: 100px" src="../../static/kino_app/images/oscar.png" alt="">
+                        <div class="col-lg-2 " style="margin-left: 40px" >
+                            <img style="width: 100px;height: 100px" src="../../../media/{{ contact.logo }}" alt="">
                         </div>
-                        <div class="col-lg-5">
-                            Кинотеатр "Золотой Дюк"
-                            Одесса, проспект Академика Глушко, 11ж
-                            Бронирование билетов:  (048) 746-32-33, (048) 746-32-20
-                            e-mail: gоldduke@kino.odessa.ua
+                        <div class="col-lg-2" >
+                            <h6>{{ contact.address}}</h6>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
-                            <img style="width:  300px;height: 300px" src="../../static/kino_app/images/banner_cinema.jpg" alt="">
+                        <div class="col-lg-4 "  >
+                            <img style="width:  400px;height: 300px" src="../../../media/{{ contact.cinema.banner }}" alt="">
                         </div>
-                        <div class="col-lg-4">
-                            <div style="width: 100%"><iframe scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=300&amp;height=300&amp;hl=en&amp;q=%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F%20%D0%90%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D1%96%D0%BA%D0%B0%20%D0%9F%D0%B0%D0%B2%D0%BB%D0%BE%D0%B2%D0%B0,%2044%D0%91,%20%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2,%20%D0%A5%D0%B0%D1%80%D0%BA%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0%20%D0%BE%D0%B1%D0%BB%D0%B0%D1%81%D1%82%D1%8C,%2061038+(Cinema%20adress)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="300" height="300" frameborder="0"><a href="http://www.gps.ie/">gps systems</a></iframe></div>
-                        </div>
+                        <div class="col-lg-4 "style="margin-left: 100px">
+                            <div style="width: 100%"><iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=+(%D0%A4%D1%80%D0%B0%D0%BD%D1%86%D1%83%D0%B7%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B1%D1%83%D0%BB%D1%8C%D0%B2%D0%B0%D1%80)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/car-satnav-gps/">best sat navs</a></iframe></div>                        </div>
                     </div>
-                </div>
+                    {% endfor %}
+
               </div>
           </div>
           <div class="col-lg-2 " style="background-color: black">
@@ -40,5 +42,6 @@
           </div>
       </div>
   </div>
+</div>
 </div>
 {% endblock %}

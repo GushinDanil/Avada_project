@@ -1,15 +1,17 @@
 {% extends 'kino_app/base.html' %}
-
+{% load static %}
+{% block title %} {{ cinema.name }} {% endblock %}
 {% block content %}
 <div class="card mb-3 text-black" style="margin-top: 130px;">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" >
+
         <div class="carousel-item active" >
 
-            <img src="../../static/kino_app/images/banner_cinema.jpg"   class="img-fluid" alt="Responsive image">
+            <img src="{% static 'kino_app/images/cinemas/banner/' %}{{ cinema.banner }}" class="img-fluid" alt="Responsive image">
 
             <div class="carousel-caption"style="margin-bottom: -100px;margin-left: -190px; width: 100%;height: 175px; background: rgba(0, 0, 0, 0.8);">
-               <h1 class="text-center">Название кинотеатра</h1>
+               <h1 class="text-center">{{ cinema.name}}</h1>
             </div>
         </div>
       </div>
@@ -20,66 +22,34 @@
                 <div  class="container" style="background-color: black;width: 100%;height: 600px">
                     <p class="text-center text-white">Контекстная реклама</p>
                 </div>
-                <h5 >Количество залов 4</h5>
+                <h5 >Количество залов {{ halls_num }}</h5>
                 <div class="container ">
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Зал 1
-                            </div>
-                            </a>
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Зал 2
-                            </div>
-                            </a>
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Зал 3
-                            </div>
-                            </a>
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Зал 4
-                            </div>
-                            </a>
+                            {%  for hall in halls %}
+                                <a style="text-decoration: none" href="{% url 'hall' hall.id %}">
+                                <div class="btn btn-success mt-1" style="width: 100%">
+                                Зал {{ hall.number }}
+                                </div>
+                                </a>
+                            {% endfor %}
+
 
                 </div>
                 <br>
                 <h5>Смотрите сегодня</h5>
                 <div class="container">
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Сеанс 1
+                            {% for seance in seances %}
+
+
+                            <a style="text-decoration: none" href="#">
+                            <div class="btn btn-success mt-1" style="width: 100%">
+                                {{ seance.film.name}}({{ seance.time }})
                             </div>
                             </a>
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Сеанс 2
-                            </div>
-                            </a>
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Сеанс 3
-                            </div>
-                            </a>
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Сеанс 4
-                            </div>
-                            </a>
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Сеанс 5
-                            </div>
-                            </a>
-                            <a style="text-decoration: none" href="hall.html">
-                            <div style="border-style: solid;border-color: black">
-                            Сеанс 6
-                            </div>
-                            </a>
+
+                            {% endfor %}
                 </div>
                 <br>
-                <a class="text-black btn btn-outline-success" style="" href=" "><h6>Расписание всех сеансов</h6> </a>
+                <a class="text-black btn btn-outline-success" style="" href="{% url 'schedule' %}"><h6>Расписание всех сеансов</h6> </a>
 
           </div>
           <div class="col-lg-10">
@@ -91,13 +61,13 @@
                              <img src="../../static/kino_app/images/oscar.png" height="100px" width="100px" class="" alt="..." style="margin-left: 125px">
                         </div>
                         <div class="col-lg-3">
-                            <a class="text-black btn btn-outline-success" style="" href=" "><h5>Расписание сеансов</h5> </a>
+                            <a class="text-black btn btn-outline-success" style="" href="{% url 'schedule' %}"><h5>Расписание сеансов</h5> </a>
 
-                            <div class=" border rounded bg-dark me-0" style="margin-top: 30px;" >
+                            <div class="btn-group border rounded bg-dark me-0" style="margin-top: 30px; " >
                                  <a class ='me-1 border rounded  text-white' style="background: red " href="https://uk-ua.facebook.com/"><h8>3D</h8></a>
                                  <a class ='me-1 border rounded  text-white' style="background: green " href="https://twitter.com/?lang=ru"><h8>D-BOX</h8> </a>
                                  <a class ='me-1 border rounded  text-white' style="background: blue " href="https://www.tiktok.com/uk-UA/"><h8>DOLBY-ATMOS</h8></a>
-                                 <a class ='me-1 border rounded  text-white' style="background: gold " href="https://web.telegram.org/"><h8>VIP</h8></a>
+                                 <a class =' border rounded  text-white' style="background: gold " href="https://web.telegram.org/"><h8>VIP</h8></a>
                             </div>
                         </div>
 
@@ -106,9 +76,7 @@
                 </div>
 
                 <p class="card-text">
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.
+                    {{ cinema.description }}
                 </p>
                 <h3 class="text-center">Условия</h3>
                 <br>
@@ -186,46 +154,23 @@
                 <h4 class="text-center">ФОТОГАЛЕРЕЯ</h4>
                 <br>
                 <div class="album py-2" id="album-carousel">
-                      <div id="myCarousel" class="container carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
-                            <div class="container">
-                              <div class="carousel-caption">
-                              </div>
-                            </div>
+                       <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                          <div class="carousel-inner">
+                              {% for img in cinema_imgs %}
+                                        <div class="carousel-item {% if forloop.counter0 == 0%}
+                                            active{% endif %}"  data-bs-interval="1000">
+                                          <img src="{% static 'kino_app/images/cinemas/cinemas_imgs/' %}{{ img.link }}" class="d-block w-100" alt="...">
+                                        </div>
+                              {% endfor %}
                           </div>
-                          <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
-                            <div class="container">
-                              <div class="carousel-caption">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="carousel-item">
-                            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
-                            <div class="container">
-                              <div class="carousel-caption">
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
                       </div>
                 </div>
               </div>
