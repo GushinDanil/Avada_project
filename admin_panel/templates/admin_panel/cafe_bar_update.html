@@ -23,10 +23,16 @@
           {% endfor %}
           </tr>
       {% endfor %}
+            <tr>
+                <td>
+                                  <button id="add-menu-form" class="btn btn-success my-3">Добавить блюдо</button>
+
+                </td>
+            </tr>
+
 
     </tbody>
 </table>
-    <button id="add-menu-form" class="btn btn-success my-3">Добавить блюдо</button>
 
 {% endblock %}
 {% block scripts %}
@@ -41,6 +47,7 @@
     const imageForm = document.getElementsByClassName("menu-form");
         const mainForm = document.querySelector("#pages_form");
         const addImageFormBtn = document.querySelector("#add-menu-form");
+        const lastTh = document.querySelector("#add_th");
         const submitFormBtn = document.querySelector('[type="submit"]');
         const totalForms = document.querySelector("#id_form-TOTAL_FORMS");
 

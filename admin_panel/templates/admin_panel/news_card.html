@@ -3,12 +3,24 @@
 
 {% block content2 %}
 
+
                                                 <div class="row" style="margin-left: 600px" >
                                                     <div class="col-lg-2" >
                                                     </div>
                                                     <div class="col-lg-8 " >
-                                                         <div class="btn-group">
-                                                             <a href="stock_card.html" style="text-decoration: none">
+
+                                                    </div>
+                                                </div><!-- /.row -->
+
+
+                              <div class="container-fluid">
+                                <div class="row">
+                            <!-- Small boxes (Stat box) -->
+                                 <form id="news_form"  runat="server" action="{% url 'news_table' %}" method="post" enctype="multipart/form-data">
+
+                                     {% csrf_token %}
+                                      <div class="btn-group ">
+                                                             <a href="#" style="text-decoration: none">
                                                              <button type="button"  style="width: 100%; " class="btn-sm btn-block btn-success">
                                                                 <h6>Русский</h6></button></a>
 
@@ -17,15 +29,7 @@
 
 
 
-                                                         </div>
-                                                    </div>
-                                                </div><!-- /.row -->
-
-
-                              <div class="container-fluid">
-                            <!-- Small boxes (Stat box) -->
-                                 <form id="news_form"  runat="server" action="{% url 'news_table' %}" method="post" enctype="multipart/form-data">
-                                      {% csrf_token %}
+                                     </div>
                                       {% for row in news_form %}
                                           <div class="row mb-3">
                                               <label for="{{ row.id_for_label }}" class="col-sm-2 form-label">{{ row.label }}:</label>
@@ -36,9 +40,11 @@
                                       {% endfor %}
                                       {{ newsImgs_form.management_form }}
                                       <h5>Галерея картинок:</h5>
+
                                       {% for form_img in newsImgs_form %}
                                           <div class="image-form d-flex justify-content-between my-3 " style="width: 50%" >
                                                 {{ form_img }}
+
                                                 <div class="preview"></div>
 
                                                 <button class="align-self-center btn btn-danger delete-image-form ml-5">Delete</button>
@@ -60,7 +66,7 @@
                                         </div>
                                   </form>
 
-
+                                </div>
                               </div>
 
   <!-- /.content-wrapper -->
@@ -96,7 +102,6 @@
 
             const newImageForm = imageForm[0].cloneNode(true);
             const formRegex = RegExp(`form-(\\d){1}-`, 'g');
-
             formCount++;
 
             newImageForm.innerHTML = newImageForm.innerHTML.replace(formRegex, `form-${formCount}-`);

@@ -96,6 +96,13 @@ class PageImgForm(forms.ModelForm):
     class Meta:
         model = PageImg
         fields = ('img',)
+        widgets = {
+
+            'img': forms.FileInput(attrs={'type': 'file',}),
+
+        }
+
+
 
 
 class MainPageForm(forms.ModelForm):
@@ -107,8 +114,11 @@ class MainPageForm(forms.ModelForm):
 class NewsForm(forms.ModelForm):
     class Meta:
         model = News
-        fields = ('name', 'short_description', 'description', 'turn_on', 'video_link', 'banner', 'card_img')
+        fields = ('turn_on','name', 'short_description', 'description',  'video_link', 'banner', 'card_img')
+        widgets = {
 
+            'turn_on': forms.CheckboxInput(attrs={'type':'checkbox','class':'col align-self-start','id':'customSwitch1'}),
+        }
 
 class ContactForm(forms.ModelForm):
     class Meta:
