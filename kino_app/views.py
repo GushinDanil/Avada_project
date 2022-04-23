@@ -21,6 +21,20 @@ def page(request, page_id):
     return render(request, '../templates/kino_app/page.html', context=data)
 
 
+# def main(request):
+#     mainPage = MainPage.objects.last()
+#     tops = TopCarousel.objects.all()
+#     banners = BackImg.objects.all()
+#     news_sales = BottomCarousel.objects.all()
+#     banners_sliders = {"banner": banners, "tops": tops, "news_sales": news_sales}
+#     date = datetime.datetime.today().date()
+#     seances = Seance.objects.filter(date=date)
+#     seances = seances.distinct("film")
+#     pages=Page.objects.all()
+#
+#     data = {'mainPage': mainPage, 'seances': seances, 'banners_sliders': banners_sliders, 'pages': pages,
+#             "date": date}
+#     return render(request, '../templates/kino_app/main.html', context=data)
 def main(request):
     mainPage = MainPage.objects.last()
     tops = TopCarousel.objects.all()
@@ -34,7 +48,7 @@ def main(request):
 
     data = {'mainPage': mainPage, 'seances': seances, 'banners_sliders': banners_sliders, 'pages': pages,
             "date": date}
-    return render(request, '../templates/kino_app/main.html', context=data)
+    return render(request, '../templates/kino_app_old/main.html', context=data)
 
 
 def poster(request):
